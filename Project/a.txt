@@ -1,0 +1,58 @@
+int solver(char lab[10][10], int linha_e, int coluna_e, int linha_s, int coluna_s, player jogador)
+{
+    jogador.linha_p = linha_e;
+    jogador.coluna_p = coluna_e;
+    char tabuleiro_p[10][10];
+    jogador.cont = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            tabuleiro_p[i][j] = lab[i][j];
+        }
+    }
+    do
+    {
+
+        if (tabuleiro_p[(jogador.linha_p)][(jogador.coluna_p) + 1] == '0' || 'S' == tabuleiro_p[(jogador.linha_p)][(jogador.coluna_p) + 1])
+        {
+            jogador.linha_ant = jogador.linha_p;
+            jogador.coluna_ant = jogador.coluna_p;
+            jogador.coluna_p = (jogador.coluna_p) + 1;
+            jogador.cont = (jogador.cont) + 1;
+        }
+        else if (tabuleiro_p[(jogador.linha_p) + 1][jogador.coluna_p] == '0' || 'S' == tabuleiro_p[(jogador.linha_p) + 1][jogador.coluna_p])
+        {
+            jogador.linha_ant = jogador.linha_p;
+            jogador.coluna_ant = jogador.coluna_p;
+            jogador.linha_p = (jogador.linha_p) + 1;
+            jogador.cont = (jogador.cont) + 1;
+        }
+        else if (tabuleiro_p[(jogador.linha_p)][(jogador.coluna_p) - 1] == '0' || 'S' == tabuleiro_p[(jogador.linha_p)][(jogador.coluna_p) - 1])
+        {
+            jogador.linha_ant = jogador.linha_p;
+            jogador.coluna_ant = jogador.coluna_p;
+            jogador.coluna_p = (jogador.coluna_p) - 1;
+            jogador.cont = (jogador.cont) + 1;
+        }
+        else if (tabuleiro_p[(jogador.linha_p) - 1][(jogador.coluna_p)] == '0' || 'S' == tabuleiro_p[(jogador.linha_p) - 1][(jogador.coluna_p)])
+        {
+            jogador.linha_ant = jogador.linha_p;
+            jogador.coluna_ant = jogador.coluna_p;
+            jogador.linha_p = (jogador.linha_p) - 1;
+            jogador.cont = (jogador.cont) + 1;
+        }
+        if ((jogador.linha_p == linha_s) && (jogador.coluna_p == coluna_s))
+            printf("Deu certo\n");
+    } while ((jogador.linha_p != linha_s) && (jogador.coluna_p != coluna_s));
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            printf("%c  ", tabuleiro_p[i][j]);
+        }
+        printf("\n");
+    }
+    printf("[%d][%d]", jogador.linha_p, jogador.coluna_p);
+    return jogador.cont;
+}
